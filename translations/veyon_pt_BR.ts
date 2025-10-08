@@ -216,35 +216,35 @@ Se você tem interesse em traduzir o Veyon para o seu idioma local, ou outro idi
     </message>
     <message>
         <source>Accessing computer and local computer</source>
-        <translation type="unfinished"/>
+        <translation>Acessando computador e computador local</translation>
     </message>
     <message>
         <source>User being accessed</source>
-        <translation type="unfinished"/>
+        <translation>Usuário acessado</translation>
     </message>
     <message>
         <source>is logged in locally</source>
-        <translation type="unfinished"/>
+        <translation>está logado localmente</translation>
     </message>
     <message>
         <source>is logged in remotely</source>
-        <translation type="unfinished"/>
+        <translation>está logado remotamente</translation>
     </message>
     <message>
         <source>No user is logged in locally</source>
-        <translation type="unfinished"/>
+        <translation>Nenhum usuário está logado localmente</translation>
     </message>
     <message>
         <source>One or multiple users are logged in locally</source>
-        <translation type="unfinished"/>
+        <translation>Um ou mais usuários estão logados localmente</translation>
     </message>
     <message>
         <source>No user is logged in remotely</source>
-        <translation type="unfinished"/>
+        <translation>Nenhum usuário está logado remotamente</translation>
     </message>
     <message>
         <source>One or multiple users are logged in remotely</source>
-        <translation type="unfinished"/>
+        <translation>Um ou mais usuários estão logados remotamente</translation>
     </message>
     <message>
         <source>is located at</source>
@@ -252,15 +252,15 @@ Se você tem interesse em traduzir o Veyon para o seu idioma local, ou outro idi
     </message>
     <message>
         <source>is not located at</source>
-        <translation type="unfinished"/>
+        <translation>não está localizado em</translation>
     </message>
     <message>
         <source>are located at the same location</source>
-        <translation type="unfinished"/>
+        <translation>estão localizados no mesmo local</translation>
     </message>
     <message>
         <source>are not located the same location</source>
-        <translation type="unfinished"/>
+        <translation>não estão localizados no mesmo local</translation>
     </message>
     <message>
         <source>is member of group</source>
@@ -268,15 +268,15 @@ Se você tem interesse em traduzir o Veyon para o seu idioma local, ou outro idi
     </message>
     <message>
         <source>is not member of group</source>
-        <translation type="unfinished"/>
+        <translation>não é membro do grupo</translation>
     </message>
     <message>
         <source>is authenticated via</source>
-        <translation type="unfinished"/>
+        <translation>está autenticado via</translation>
     </message>
     <message>
         <source>is not authenticated via</source>
-        <translation type="unfinished"/>
+        <translation>não está autenticado via</translation>
     </message>
     <message>
         <source>has one or more groups in common with user being accessed</source>
