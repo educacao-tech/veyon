@@ -1,7 +1,7 @@
 /*
  * ComputerZoomWidget.cpp - fullscreen preview widget
  *
- * Copyright (c) 2021-2025 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2021-2026 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *
@@ -41,12 +41,14 @@ ComputerZoomWidget::ComputerZoomWidget( const ComputerControlInterface::Pointer&
 
 	const auto openOnMasterScreen = VeyonCore::config().showFeatureWindowsOnSameScreen();
 	const auto master = VeyonCore::instance()->findChild<VeyonMasterInterface *>();
-	const auto masterWindow = master->mainWindow();
-	if( master && openOnMasterScreen )
+	const auto masterWindow = master ? master->mainWindow() : nullptr;
+	if (masterWindow && openOnMasterScreen)
 	{
-		move( masterWindow->x(), masterWindow->y() );
-	} else {
-		move( 0, 0 );
+		move(masterWindow->x(), masterWindow->y());
+	}
+	else
+	{
+		move(0, 0);
 	}
 
 	updateComputerZoomWidgetTitle();
@@ -134,19 +136,17 @@ bool ComputerZoomWidget::eventFilter( QObject* object, QEvent* event )
 void ComputerZoomWidget::updateComputerZoomWidgetTitle()
 {
 	const auto username = m_vncView->computerControlInterface()->userFullName().isEmpty() ?
-							  m_vncView->computerControlInterface()->userLoginName() :
+							  VeyonCore::stripDomain(m_vncView->computerControlInterface()->userLoginName()) :
 							  m_vncView->computerControlInterface()->userFullName();
 
 	if (username.isEmpty())
 	{
-		setWindowTitle( QStringLiteral( "%1 - %2" ).arg( m_vncView->computerControlInterface()->computerName(),
-														 VeyonCore::applicationName() ) );
+		setWindowTitle(QStringLiteral("%1 - InfoEscola").arg(m_vncView->computerControlInterface()->computerName()));
 	}
 	else
 	{
-		setWindowTitle( QStringLiteral( "%1 - %2 - %3" ).arg( username,
-															  m_vncView->computerControlInterface()->computerName(),
-															  VeyonCore::applicationName() ) );
+		setWindowTitle(QStringLiteral( "%1 - %2 - InfoEscola").arg(username,
+															  m_vncView->computerControlInterface()->computerName()));
 	}
 }
 

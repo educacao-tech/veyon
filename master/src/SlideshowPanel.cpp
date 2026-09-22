@@ -1,7 +1,7 @@
 /*
  * SlideshowPanel.cpp - implementation of SlideshowPanel
  *
- * Copyright (c) 2020-2025 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2020-2026 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *
@@ -115,7 +115,7 @@ void SlideshowPanel::switchViewMode()
 	{
 		m_originalParent = parentWidget();
 		setParent(nullptr);
-		setWindowTitle(tr("%1 Master – Slideshow").arg(VeyonCore::applicationName()));
+		setWindowTitle(tr("InfoEscola Master – Slideshow"));
 		showMaximized();
 	}
 	else

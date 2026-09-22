@@ -231,9 +231,9 @@ QString VeyonCore::sessionIdEnvironmentVariable()
 
 void VeyonCore::setupApplicationParameters()
 {
-	QCoreApplication::setOrganizationName( QStringLiteral( "Veyon Solutions" ) );
-	QCoreApplication::setOrganizationDomain( QStringLiteral( "veyon.io" ) );
-	QCoreApplication::setApplicationName( QStringLiteral( "Veyon" ) );
+	QCoreApplication::setOrganizationName( QStringLiteral( "InfoEscola" ) );
+	QCoreApplication::setOrganizationDomain( QStringLiteral( "infoescola.local" ) );
+	QCoreApplication::setApplicationName( QStringLiteral( "InfoEscola" ) );
 
 	QCoreApplication::setAttribute( Qt::AA_ShareOpenGLContexts );
 

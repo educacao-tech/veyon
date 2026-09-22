@@ -1,7 +1,7 @@
 /*
  * MainWindow.cpp - implementation of MainWindow class
  *
- * Copyright (c) 2010-2025 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2010-2026 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *
@@ -53,7 +53,7 @@ MainWindow::MainWindow( QWidget* parent ) :
 {
 	ui->setupUi( this );
 
-	setWindowTitle( tr( "%1 Configurator %2" ).arg( VeyonCore::applicationName(), VeyonCore::versionString() ) );
+	setWindowTitle(tr("InfoEscola Configurator %1").arg(VeyonCore::versionString()));
 
 	loadConfigurationPagePlugins();
 
@@ -92,14 +92,10 @@ MainWindow::MainWindow( QWidget* parent ) :
 
 	connect( ui->configPages, &QStackedWidget::currentChanged, this, &MainWindow::updateSizes );
 
-	resize( ui->pageSelector->width() + ui->masterConfigurationPage->minimumSizeHint().width(),
-			ui->masterConfigurationPage->minimumSizeHint().height() + 100 );
-
-	restoreGeometry( QSettings{}.value( windowGeometryKey() ).toByteArray() );
+	resize( ui->pageSelector->width() + ui->generalConfigurationPage->minimumSizeHint().width(),
+			ui->generalConfigurationPage->minimumSizeHint().height() );
 
 	updateView();
-
-	VeyonCore::enforceBranding( this );
 }
 
 
@@ -137,10 +133,7 @@ void MainWindow::apply()
 	const auto showError = [this](const ConfigurationManager& configurationManager) {
 		vCritical() << configurationManager.errorString().toUtf8().constData();
 
-		QMessageBox::critical(this,
-							  tr("%1 Configurator").arg(VeyonCore::applicationName()),
-							  configurationManager.errorString());
-
+		QMessageBox::critical(this, tr("InfoEscola Configurator"), configurationManager.errorString());
 	};
 
 	ConfigurationManager configurationManager;
@@ -164,26 +157,6 @@ void MainWindow::apply()
 	{
 		showError(configurationManager);
 	}
-}
-
-
-
-void MainWindow::closeEvent( QCloseEvent* event )
-{
-	if( m_configChanged &&
-		QMessageBox::question( this, tr( "Unsaved settings" ),
-							   tr( "There are unsaved settings. Quit anyway?" ),
-							   QMessageBox::Yes | QMessageBox::No ) !=
-			QMessageBox::Yes )
-	{
-		event->ignore();
-		return;
-	}
-
-	QSettings{}.setValue( windowGeometryKey(), saveGeometry() );
-
-	event->accept();
-	QMainWindow::closeEvent( event );
 }
 
 
@@ -285,11 +258,6 @@ void MainWindow::updateSizes()
 {
 	ui->configPages->setMinimumSize( ui->scrollArea->width() - ui->scrollArea->verticalScrollBar()->width(),
 									 ui->configPages->currentWidget()->minimumSizeHint().height() );
-
-	ui->scrollAreaWidgetContents->setFixedSize(
-		ui->scrollArea->width() - ui->scrollArea->verticalScrollBar()->width(),
-		qMax( ui->scrollAreaWidgetContents->minimumSizeHint().height(), ui->scrollArea->contentsRect().height() )
-		);
 }
 
 
@@ -396,4 +364,23 @@ void MainWindow::loadConfigurationPagePlugins()
 	// adjust minimum size
 	ui->pageSelector->setMinimumSize( ui->pageSelector->sizeHintForColumn(0) + 3 * ui->pageSelector->spacing(),
 									  ui->pageSelector->minimumHeight() );
+}
+
+
+
+void MainWindow::closeEvent( QCloseEvent *closeEvent )
+{
+	if( m_configChanged &&
+		QMessageBox::question( this, tr( "Unsaved settings" ),
+							   tr( "There are unsaved settings. "
+								   "Quit anyway?" ),
+							   QMessageBox::Yes | QMessageBox::No ) !=
+		QMessageBox::Yes )
+	{
+		closeEvent->ignore();
+		return;
+	}
+
+	closeEvent->accept();
+	QMainWindow::closeEvent( closeEvent );
 }
